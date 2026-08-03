@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tindahan ni Aling Nena — POS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="storefront">
+  <div class="brand-mark">
+    <div>
+      <h1>WELLCOME TO SARI SARI STORE POS
+      </h1>
+      <div class="tagline">Tindahan ni Mangcanor · POINT OF SALE</div>
+    </div>
+  </div>
+  <div class="clock" id="clock">—</div>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="pos">🧾 Bilihan</button>
+  <button class="tab-btn" data-tab="transactions">📋 Mga Transaksyon</button>
+  <button class="tab-btn" data-tab="reports">📈 Ulat</button>
+</nav>
+
+<main>
+
+  <!-- POS VIEW -->
+  <section class="view active" id="view-pos">
+    <div class="pos-grid">
+      <div class="panel">
+        <h2> Paninda (Products)</h2>
+        <div class="search-row">
+          <input type="text" id="searchInput" placeholder="Hanapin ang produkto...">
+          <select id="sortSelect">
+            <option value="default">Sort: Default</option>
+            <option value="price-asc">Price: Low → High</option>
+            <option value="price-desc">Price: High → Low</option>
+            <option value="name-asc">Name: A → Z</option>
+          </select>
+        </div>
+        <div class="shelf" id="shelf"></div>
+      </div>
+
+      <div class="receipt">
+        <div class="receipt-head">
+          <div class="store">RESIBO</div>
+          <div class="sub">Current Transaction</div>
+        </div>
+        <hr>
+        <div id="cartLines"><div class="cart-empty">Wala pang produktong napili.<br>Pumili sa kaliwa para magsimula.</div></div>
+        <hr>
+        <div class="totals-row"><span>Subtotal</span><span id="subtotalVal">₱0.00</span></div>
+        <div class="totals-row discount-row" id="discountRow" style="display:none;">
+          <span class="discount-flag" id="discountLabel">Discount</span>
+          <span class="discount-flag" id="discountVal">-₱0.00</span>
+        </div>
+        <div class="totals-row grand"><span>TOTAL</span><span id="totalVal">₱0.00</span></div>
+
+        <div class="customer-row">
+          <label for="customerType">Customer type</label>
+          <select id="customerType">
+            <option value="regular">Regular / Other</option>
+            <option value="senior">Senior Citizen</option>
+            <option value="pwd">PWD</option>
+          </select>
+        </div>
+        <div class="customer-row">
+          <input type="text" id="customerName" placeholder="Customer name (optional)">
+        </div>
+        <div class="pay-row">
+          <input type="number" id="paymentInput" placeholder="Payment amount (₱)" min="0" step="0.01">
+        </div>
+        <div class="change-banner" id="changeBanner">Change: <b id="changeVal">₱0.00</b></div>
+
+        <button class="btn" id="checkoutBtn" disabled>✅ Checkout</button>
+        <button class="btn secondary" id="clearCartBtn">🗑️ Clear Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSACTIONS VIEW -->
+  <section class="view" id="view-transactions">
+    <div class="panel">
+      <h2>📋 Lahat ng Transaksyon</h2>
+      <div id="txTableWrap"></div>
+    </div>
+  </section>
+
+  <!-- REPORTS VIEW -->
+  <section class="view" id="view-reports">
+    <div class="stat-cards" id="statCards"></div>
+    <div class="panel">
+      <h2> Best Sellers</h2>
+      <div id="bestSellerTable"></div>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast">✅ Transaction completed</div>
+
+<div class="receipt-modal-bg" id="receiptModalBg">
+  <div class="receipt receipt-modal" id="receiptModalContent"></div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
